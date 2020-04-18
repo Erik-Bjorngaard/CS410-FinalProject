@@ -1,5 +1,10 @@
 class Request:
 
+    # Converts a query into a request
     def __convert_query(self, query):
-        convertedQuery = query
-        return convertedQuery
+
+        # convert query
+        request = query
+
+        # return result
+        return request
