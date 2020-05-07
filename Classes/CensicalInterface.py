@@ -1,5 +1,6 @@
-from classes.Request import Request
-from classes.Result import Result
+from Classes.Request import Request
+from Classes.Result import Result
+from Classes.API import Adapter
 
 class CensicalInterface:
     __data_topic = ""
@@ -29,14 +30,35 @@ class CensicalInterface:
     def set_geographies(self, geographies):
         self.__geographies = geographies
 
-    def display_result(self, query):
+    def display_result(self):
         # Create new request
-        request = Request.__convertQuery(query)
+        adapter = Adapter(self.get_data_topic())
+        stateResult = adapter.execute_query(self.get_geographies())
+        usResult = adapter.execute_query()
+        censusRequest = {"stateResult": stateResult, "usResult": usResult}
         
-        # Determine which graph to display based on data topic
-        graphType = Result.get_graph_type(__data_topic)
+        result = Result()
 
-        # Parse request
-        result = Result.get_result(request)
+        graph_type = result.get_graph_type(self.get_data_topic())
+        results = result.get_result(censusRequest,graph_type,self.get_geographies())
 
-        return result
+        #display message
+        if(self.__data_topic == "totalPop"):
+            message = f'The state of: {self.get_geographies()}' + \
+                                f' has a total population of: {stateResult}'
+        if(self.__data_topic == "percentPop"):
+            message = f'Minors make up {stateResult}% of state: {self.get_geographies()}' + \
+                        f's population'
+        if(self.__data_topic == "medianAges"):
+            message = f'The state of: {self.get_geographies()}' + \
+                        f' has a median age of: {stateResult}'
+        if(self.__data_topic == "medianIncome"):
+            message = f'The state of: {self.get_geographies()}' + \
+                        f' has a median household income of: ${stateResult}'
+        if(self.__data_topic == "medianRent"):
+            message = f'The state of: {self.get_geographies()}' + \
+                        f' has a median rent of: ${stateResult}'
+
+        output = {"stateResult": stateResult, "render": results, "message": message}
+
+        return output

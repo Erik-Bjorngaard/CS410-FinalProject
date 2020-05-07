@@ -16,17 +16,21 @@ class Result:
     # Send request to API and return result
     def get_result(self, request, graph_type, state_Abrv):
 
+        usResult = request['usResult']
+        stateResult = request['stateResult']
+
         type = graph_type
         if(type == "pieChart"):
+            value = int(usResult) - int(stateResult)
             chart = pieChart(name=type, color_category='category20c', height=450, width=450)
             xdata = ["United States", state_Abrv]
-            ydata = [12313411, int(request)]
+            ydata = [int(value), int(stateResult)]
             extra_serie = {"tooltip": {"y_start": "", "y_end": " cal"}}
             chart.add_serie(y=ydata, x=xdata, extra=extra_serie)
         else:
             chart = multiBarChart(width=500, height=400, x_axis_format=None)
             xdata = ["United States", state_Abrv]
-            ydata = [123411, int(request)]
+            ydata = [usResult, stateResult]
             chart.add_serie(name="", y=ydata, x=xdata)
             chart.show_legend = False
             

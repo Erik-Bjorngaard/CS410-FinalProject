@@ -1,25 +1,23 @@
-from classes.Request import Request
+from Classes.Request import Request
 
 class Adapter:
 
     __requestType = ""
-    __geographies = ""
 
-    def __init__(self, requestType, geographies = ""):
+    def __init__(self, requestType):
         self.__requestType = requestType
-        self.__geographies = geographies
 
-    def execute_query(self):
+    def execute_query(self, geographies=""):
         if(self.__requestType == "totalPop"):
-            return self.__getPopulation(self.__geographies)
+            return self.__getPopulation(geographies)
         if(self.__requestType == "percentPop"):
-            return self.__getPercentMinor(self.__geographies)
+            return self.__getPercentMinor(geographies)
         if(self.__requestType == "medianAges"):
-            return self.__getMedianAge(self.__geographies)
+            return self.__getMedianAge(geographies)
         if(self.__requestType == "medianIncome"):
-            return self.__getMedianHouseholdIncome(self.__geographies)
+            return self.__getMedianHouseholdIncome(geographies)
         if(self.__requestType == "medianRent"):
-            return self.__getMedianRent(self.__geographies)
+            return self.__getMedianRent(geographies)
 
 
     # RESPONSE METHODS FOR SINGLE US STATE
