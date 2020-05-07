@@ -7,22 +7,25 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-# render default index page
+# Route to handle query from index.html
 @app.route('/runQuery', methods=['POST'])
 def runQuery():
-    result = "null"
-    subject = request.form['subject']
-    stateAbrv = request.form['state']
 
-    if subject == 1:
-        print(subject, stateAbrv)
+    result = "null"     #initialize result variable
+    subject = request.form['subject']      #get subject from form
+    stateAbrv = request.form['state']       #get state abreviation from form
 
-    result = getPopulation(stateAbrv)
-    output = f'There are: {result}' + \
-                    f' people in the state of: {stateAbrv}'
+    #if subject is total population
+    if subject == "totalPop":
 
-    print(output)
-
+        #send getPopulation query with state abrv
+        result = getPopulation(stateAbrv)
+        
+        #format result nicely
+        output = f'The state of: {stateAbrv}' + \
+                        f' has a total population of: {result}'
+    
+    #render index.html template, send nicely formatted response with display
     return render_template('index.html', display = output)
 
 
