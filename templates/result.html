@@ -1,0 +1,25 @@
+{% extends "index.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/static/css/nvd3_181.css">
+
+<script src="/static/nvd3/d3v3.js"></script>
+<script src="/static/nvd3/nvd3_181.js"></script>
+
+{% endblock %}
+
+{% block result %}
+<div id="results" class="wrapper">
+  <h1><strong> {{display}} </strong></h1>
+</div>
+
+<div class = "wrapper">
+{{htmlContent | safe}}
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script> window.location.hash="results"; </script>
+{% endblock %}

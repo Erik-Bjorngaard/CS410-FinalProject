@@ -5,8 +5,10 @@
 <meta charset="UTF-8">
 <!-- type="text/css" -->
 <link rel="stylesheet"  href="{{ url_for('static', filename ='css/style.css') }}">
-
 <link href="https://fonts.googleapis.com/css?family=Nunito+Sans:400,600,700,800&display=swap" rel="stylesheet">
+
+{% block head %}
+{% endblock %}
 </head>
 
 
@@ -47,15 +49,15 @@
     <ul>
       <li>Total Population<input type="checkbox" name="subject" value="totalPop"></li>
       <li>Percentage of Population<input type="checkbox" name="subject" value="percentPop"></li>
-      <li>Median Age<input type="checkbox" name="subject" value="MedianAges"></li>
+      <li>Median Age<input type="checkbox" name="subject" value="medianAges"></li>
     </ul>
     </div>
 
     <div class="ca" id="ca2">
     <h4>Household</h4>
     <ul>
-      <li>Median Income<input type="checkbox" name="subject" value="MedianIncome"></li>
-      <li>Median Rent<input type="checkbox" name="subject" value="MedianRent"></li>
+      <li>Median Income<input type="checkbox" name="subject" value="medianIncome"></li>
+      <li>Median Rent<input type="checkbox" name="subject" value="medianRent"></li>
     </ul>
     </div>
     
@@ -141,7 +143,8 @@
           <td>Puerto Rico<input type="checkbox" name="state" value="PR"></td>
         </tr>
       </table>
-      <div id="request" onclick="showResult()"><input class="button" type="submit" name="request" id="submit" onclick="showResult()"></div>
+      <!--<div id="request" onclick="showResult()"><input class="button" type="submit" name="request" id="submit" onclick="showResult()"></div>!-->
+      <div id="request"><input class="button" type="submit" name="request" id="submit"></div>
     </form>
 </div>
  
@@ -151,13 +154,16 @@
 </div>
 
 </section>
-<div>
+
+{% block result %}
+<div id="result">
   {%if display %}
   <h1><strong> {{display}} </strong></h1>
   {%endif%}
 </div>
+{% endblock %}
 
-<!---------------------- SECTION: BOTTOM ---------------------->k
+<!---------------------- SECTION: BOTTOM ---------------------->
 <section class="bottom">
 
 <div class="wrapper">
@@ -189,5 +195,9 @@
 
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="{{ url_for('static', filename ='js/jquery.js') }}" charset="utf-8"></script>
+
+{% block scripts %}
+
+{% endblock %}
 
 </html>
