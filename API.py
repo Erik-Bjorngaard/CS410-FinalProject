@@ -131,5 +131,3 @@ def getPercentMinorUS():
 
     # divide by total population and return as percent
     return ((num_minors / total_pop) * 100)
-
-print (getPercentMinorUS())
