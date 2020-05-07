@@ -1,23 +1,33 @@
-//click category menu
-$(".btn").click(function() {
-  hideshow($(this));
+// one selection for each checkbox category
+$("input:checkbox").on('click', function() {
+  var $box = $(this);
+  if ($box.is(":checked")) {
+    var group = "input:checkbox[name='" + $box.attr("name") + "']";
+    $(group).prop("checked", false);
+    $box.prop("checked", true);
+  } 
+  else {
+    $box.prop("checked", false);
+  }
+
 });
 
-//close button
+// show result
+function showResult() {
+    var x = document.getElementById("result");
+    x.style.display = "block";
+}
+
+// close button
 $(".close-button").click(function() {
   hideshow($($(this).data("target")));
 });
 
-//certain jumps between sections
-$(".jump").click(function() {
-  hideshow($($(this).data("target")));
-  $('html, body').animate({scrollTop: $(".category").offset().top}, 200);
-});
-
-//back top
+// back top
 $("#to-top").click(function() {
   $('html, body').animate({scrollTop: 0}, 500);
 });
+
 
 
 function hideshow(x) {
