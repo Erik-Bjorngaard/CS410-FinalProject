@@ -1,4 +1,4 @@
-from API import getPopulation
+from API import getPopulation, getMedianAge, getMedianHouseholdIncome, getMedianRent, getPercentMinor
 from flask import Flask, render_template, request, url_for
 app = Flask(__name__)
 
