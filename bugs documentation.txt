@@ -1,0 +1,20 @@
+document progress
+Bry
+5/7/20
+
+ran into bug with outputting the result of the query
+the page needs to reload to display the result, because to send the request
+you transfer control to the flaskFile.py and it will process the request. Then
+it renders the template again with the given output.
+There may be a way to send the request with AJAX, I just don't know it
+
+Changed the state abreviations in the index.html. They all used to be for alabama
+plus spelling errors in the names of some states.
+
+Not sure how to divide all the different kinds of queries into their own route so that
+they can be handled separately. Only one form is mapped to one route. quickest way I can
+think of is to have a bunch of if statements checking for the kind of request, and then
+handling them inside of it. 
+
+cleaned up the table of all the state checkboxes. They were scattered and not uniform.
+now they are in rows of 5.

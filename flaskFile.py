@@ -24,6 +24,18 @@ def runQuery():
         #format result nicely
         output = f'The state of: {stateAbrv}' + \
                         f' has a total population of: {result}'
+
+    #if subject is Median Income
+    if subject == "MedianIncome":
+
+        #send MedianIncome query with state abrv
+        result = getMedianHouseholdIncome(stateAbrv)
+        
+        #format result nicely
+        output = f'The state of: {stateAbrv}' + \
+                        f' has a median household income of: ${result}'
+
+    
     
     #render index.html template, send nicely formatted response with display
     return render_template('index.html', display = output)
