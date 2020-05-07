@@ -13,13 +13,12 @@
 <!-- Block for results -->
 {% block result %}
 <div id="results" class="wrapper">
-  <h1><strong> {{display}} </strong></h1>
+  <h2 class="center" style="text-align: center;"> {{display}} </h2>
 </div>
 
-<div class = "wrapper">
+<div class = "wrapper" id="visual" style="display: inline-block; margin-left: 28%;">
 {{htmlContent | safe}}
 </div>
-
 
 {% endblock %}
 
