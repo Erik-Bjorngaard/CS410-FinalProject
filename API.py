@@ -17,20 +17,34 @@ state_codes = {
 # API key 
 API_key = "&key=6491ef100a886e21ea48b5a454db83a6b2af5a57"
 
+# HELPER FUNCTIONS
 # universal function to return single stat when given query string and state abbreviation
-def getResponse(query_string, state_abrv):
+def getResponse(query, state_abrv):
     # get FIPS code from state abbreviation, append to query
     state_id = state_codes[state_abrv]
-    query_string += state_id
-    # append to key to query
-    query_string += API_key
+    query += state_id
+    # append key to query
+    query += API_key
     # get response based on query
-    response = requests.get(query_string)
+    response = requests.get(query)
     # convert response to list
     data = response.json()
     # return queried statistic 
     return data[1][0]
 
+# universal function to return single stat when given query string - used for US totals
+def getResponseUS(query):
+    # append to key to query
+    query += API_key
+    # get response based on query
+    response = requests.get(query)
+    # convert response to list
+    data = response.json()
+    # return queried statistic 
+    return data[1][0]
+
+
+# RESPONSE METHODS FOR SINGLE US STATE
 # returns total population 
 def getPopulation(state_abrv):  
     # query string 
@@ -70,5 +84,52 @@ def getPercentMinor(state_abrv):
     # get total population
     total_pop = float(getPopulation(state_abrv))
 
-    # divide by total population and return
+    # divide by total population and return as percent
     return ((num_minors / total_pop) * 100)
+
+
+
+# RESPONSE METHODS FOR US TOTALS
+# returns total population of US
+def getPopulationUS():  
+    # query string 
+    query = "https://api.census.gov/data/2018/acs/acs1?get=B01003_001E,NAME&for=us:1"
+    # get response
+    return getResponseUS(query)
+
+# returns median household income over past 12 months of US
+def getMedianHouseholdIncomeUS():
+    # query string 
+    query = "https://api.census.gov/data/2018/acs/acs1?get=B19013_001E,NAME&for=us:1"
+    # get response
+    return getResponseUS(query)
+
+# returns median age of US
+def getMedianAgeUS():
+    # query string 
+    query = "https://api.census.gov/data/2018/acs/acs1?get=B01002_001E,NAME&for=us:1"
+    # get response
+    return getResponseUS(query)
+
+# returns median gross rent of US
+def getMedianRentUS():
+    # query string 
+    query = "https://api.census.gov/data/2018/acs/acs1?get=B25064_001E,NAME&for=us:1"
+    # get response
+    return getResponseUS(query)
+
+# return percent of population under 18 years old of US
+def getPercentMinorUS():
+    # get total number of minors in the US
+    # query string 
+    query = "https://api.census.gov/data/2018/acs/acs1?get=B09001_001E,NAME&for=us:1"
+    # get response
+    num_minors = float(getResponseUS(query))
+
+    # get total population of US
+    total_pop = float(getPopulationUS())
+
+    # divide by total population and return as percent
+    return ((num_minors / total_pop) * 100)
+
+print (getPercentMinorUS())
