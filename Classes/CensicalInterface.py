@@ -2,16 +2,19 @@ from Classes.Request import Request
 from Classes.Result import Result
 from Classes.API import Adapter
 
+# The CensicalInterface class uses creates new requests and returns the results
 class CensicalInterface:
     __data_topic = ""
     __time_frame = ""
     __geographies = ""
 
+    # constructor
     def __init__(self, data_topic, geographies, time_frame = ""):
         self.__data_topic = data_topic
         self.__geographies = geographies
         self.__time_frame = time_frame
 
+    # Getters and Setters
     def get_data_topic(self):
         return self.__data_topic
 
@@ -30,6 +33,9 @@ class CensicalInterface:
     def set_geographies(self, geographies):
         self.__geographies = geographies
 
+    # end of Getters and Setters
+
+    # Create a request using the Adapter class and process the request using the Result class
     def display_result(self):
         # Create new request
         adapter = Adapter(self.get_data_topic())
@@ -37,8 +43,8 @@ class CensicalInterface:
         usResult = adapter.execute_query()
         censusRequest = {"stateResult": stateResult, "usResult": usResult}
         
+        # submit request and process results
         result = Result()
-
         graph_type = result.get_graph_type(self.get_data_topic())
         results = result.get_result(censusRequest,graph_type,self.get_geographies())
 
@@ -59,6 +65,7 @@ class CensicalInterface:
             message = f'The state of: {self.get_geographies()}' + \
                         f' has a median rent of: ${stateResult}'
 
-        output = {"stateResult": stateResult, "render": results, "message": message}
+        # JSON to store result
+        output = {"htmlContent": results, "message": message}
 
         return output

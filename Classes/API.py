@@ -1,12 +1,16 @@
 from Classes.Request import Request
 
+# The Adapter class uses the Adapter design pattern to turn a query into a request
+# that the CensicalInterface class can use
 class Adapter:
 
     __requestType = ""
 
+    # constructor
     def __init__(self, requestType):
         self.__requestType = requestType
 
+    # Executes a response method. Dependent on request type (data topic)
     def execute_query(self, geographies=""):
         if(self.__requestType == "totalPop"):
             return self.__getPopulation(geographies)

@@ -1,7 +1,10 @@
 # CS410-FinalProject
 
 
-#requirements
+#requirements:
+
 flask
+
 nvd3
+
 requests

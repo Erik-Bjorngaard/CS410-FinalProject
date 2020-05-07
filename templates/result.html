@@ -1,5 +1,7 @@
+<!-- Use index.html as a template -->
 {% extends "index.html" %}
 
+<!-- Add content to head -->
 {% block head %}
 <link rel="stylesheet" href="/static/css/nvd3_181.css">
 
@@ -8,6 +10,7 @@
 
 {% endblock %}
 
+<!-- Block for results -->
 {% block result %}
 <div id="results" class="wrapper">
   <h1><strong> {{display}} </strong></h1>
@@ -20,6 +23,7 @@
 
 {% endblock %}
 
+<!-- Place scripts here -->
 {% block scripts %}
 <script> window.location.hash="results"; </script>
 {% endblock %}

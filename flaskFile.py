@@ -14,10 +14,10 @@ def runQuery():
 
     # create new interface object
     interface = CensicalInterface(request.form['subject'] ,request.form['state'])
-    thisIsMagic = interface.display_result()
+    result = interface.display_result()
     
     #render index.html template, send nicely formatted response with display
-    return render_template('result.html', display = thisIsMagic['message'], htmlContent = thisIsMagic['render'])
+    return render_template('result.html', display = result['message'], htmlContent = result['htmlContent'])
 
 
 if __name__ == '__main__':

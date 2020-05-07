@@ -1,5 +1,6 @@
 import requests
 
+# The Request class converts a query into an HTML get request
 class Request:
 
     # dictionary of state abbreviations to FIPS code
@@ -18,7 +19,7 @@ class Request:
     # API key 
     API_key = "&key=6491ef100a886e21ea48b5a454db83a6b2af5a57"
 
-    # Converts a query into a request
+    # Converts a query into a HTML request and gets the results
     def convert_query(self, query, state_abrv=""):
 
         # append state id if looking at state data
@@ -29,14 +30,14 @@ class Request:
             
         # append key to query
         query += self.API_key
+
         # get response based on query
         response = requests.get(query)
         # convert response to list
         data = response.json()
-        # return queried statistic 
 
-        # convert query
+        # return queried statistic 
         request = data[1][0]
 
-        # return result
+        # return request results
         return request
