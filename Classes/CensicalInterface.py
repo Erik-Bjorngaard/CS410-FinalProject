@@ -1,5 +1,5 @@
-from classes.Request import Request
-from classes.Result import Result
+from Classes.Request import Request
+from Classes.Result import Result
 
 class CensicalInterface:
     __data_topic = ""

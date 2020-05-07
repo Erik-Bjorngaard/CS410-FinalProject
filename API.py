@@ -1,4 +1,4 @@
-from classes.Request import Request
+from Classes.Request import Request
 
 class Adapter:
 

@@ -1,10 +1,10 @@
+from Classes.Request import Request
 from API import Adapter
 from flask import Flask, render_template, request, url_for
 from nvd3 import pieChart
 import sys
-from classes.Result import Result
-from classes.Request import Request
-from classes.CensicalInterface import CensicalInterface
+from Classes.Result import Result
+from Classes.CensicalInterface import CensicalInterface
 
 app = Flask(__name__)
 
