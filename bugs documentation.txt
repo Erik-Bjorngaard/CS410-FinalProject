@@ -16,5 +16,12 @@ they can be handled separately. Only one form is mapped to one route. quickest w
 think of is to have a bunch of if statements checking for the kind of request, and then
 handling them inside of it. 
 
+Made 2 if statements to handle 2 queries inside of runQuery route. Pretty sure we're 
+not going to be using it in the final version. So I didn't write any for the rest of them
+Just did it as a prototype.
+
 cleaned up the table of all the state checkboxes. They were scattered and not uniform.
 now they are in rows of 5.
+
+noticed a bug where the table in the site hugs the left side of the page. Tried to fix
+with CSS, but I suck at CSS so I couldn't fix it.
