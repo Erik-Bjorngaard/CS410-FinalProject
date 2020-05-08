@@ -50,8 +50,10 @@ class CensicalInterface:
 
         #display message
         if(self.__data_topic == "totalPop"):
-            message = f'The state of: {self.get_geographies()}' + \
-                                f' has a total population of: {stateResult}'
+            message = f'The state of {self.get_geographies()}' + \
+                                f' has a population of {int(stateResult):,}.' + \
+                                    f' Which is about { int(100*round(float(stateResult)/float(usResult), 2))}%' + \
+                                        f' of the total population in the US'
         if(self.__data_topic == "percentPop"):
             message = f'Minors make up {round(stateResult, 2)}% of state: {self.get_geographies()}' + \
                         f's population'
@@ -60,10 +62,10 @@ class CensicalInterface:
                         f' has a median age of: {stateResult}'
         if(self.__data_topic == "medianIncome"):
             message = f'The state of: {self.get_geographies()}' + \
-                        f' has a median household income of: ${stateResult}'
+                        f' has a median household income of: ${int(stateResult):,}'
         if(self.__data_topic == "medianRent"):
             message = f'The state of: {self.get_geographies()}' + \
-                        f' has a median rent of: ${stateResult}'
+                        f' has a median rent of: ${int(stateResult):,}'
 
         # JSON to store result
         output = {"htmlContent": results, "message": message}
