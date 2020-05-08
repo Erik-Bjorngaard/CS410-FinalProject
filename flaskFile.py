@@ -12,10 +12,13 @@ def index():
 @app.route('/runQuery', methods=['POST'])
 def runQuery():
 
-    # create new interface object
-    interface = CensicalInterface(request.form['subject'] ,request.form['state'])
-    result = interface.display_result()
-    
+    if request.method != 'POST':
+        # create new interface object
+        interface = CensicalInterface(request.form['subject'] ,request.form['state'])
+        result = interface.display_result()
+    else:
+        return render_template('result.html', display = "Error: Please Select a Subject and State")
+
     #render index.html template, send nicely formatted response with display
     return render_template('result.html', display = result['message'], htmlContent = result['htmlContent'])
 
