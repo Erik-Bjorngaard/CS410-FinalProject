@@ -58,13 +58,13 @@ class CensicalInterface:
             message = f'Minors make up {round(stateResult, 2)}% of {self.get_geographies()}' + \
                         f's population'
         if(self.__data_topic == "medianAges"):
-            message = f'The state of: {self.get_geographies()}' + \
+            message = f'The state of {self.get_geographies()}' + \
                         f' has a median age of: {stateResult}'
         if(self.__data_topic == "medianIncome"):
-            message = f'The state of: {self.get_geographies()}' + \
+            message = f'The state of {self.get_geographies()}' + \
                         f' has a median household income of: ${int(stateResult):,}'
         if(self.__data_topic == "medianRent"):
-            message = f'The state of: {self.get_geographies()}' + \
+            message = f'The state of {self.get_geographies()}' + \
                         f' has a median rent of: ${int(stateResult):,}'
 
         # JSON to store result
