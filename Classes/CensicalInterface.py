@@ -53,7 +53,7 @@ class CensicalInterface:
             message = f'The state of: {self.get_geographies()}' + \
                                 f' has a total population of: {stateResult}'
         if(self.__data_topic == "percentPop"):
-            message = f'Minors make up {stateResult}% of state: {self.get_geographies()}' + \
+            message = f'Minors make up {round(stateResult, 3)}% of state: {self.get_geographies()}' + \
                         f's population'
         if(self.__data_topic == "medianAges"):
             message = f'The state of: {self.get_geographies()}' + \
