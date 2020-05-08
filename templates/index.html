@@ -48,7 +48,7 @@
     <h4>Population</h4>
     <ul>
       <li>Total Population<input type="checkbox" name="subject" value="totalPop"></li>
-      <li>Percentage of Population<input type="checkbox" name="subject" value="percentPop"></li>
+      <li>Percentage of Minors in Population<input type="checkbox" name="subject" value="percentPop"></li>
       <li>Median Age<input type="checkbox" name="subject" value="medianAges"></li>
     </ul>
     </div>
@@ -158,7 +158,7 @@
 {% block result %}
 <div class ="wrapper" id="results">
   {%if display %}
-  <h2 class="center" style="text-align: center;">{{display}}</h2>
+  <h2 class="center" style="text-align: right;">{{display}}</h2>
   {%endif%}
 </div>
 {% endblock %}
