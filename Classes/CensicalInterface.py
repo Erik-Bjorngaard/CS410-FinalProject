@@ -55,7 +55,7 @@ class CensicalInterface:
                                     f' Which is about { int(100*round(float(stateResult)/float(usResult), 2))}%' + \
                                         f' of the total population in the US'
         if(self.__data_topic == "percentPop"):
-            message = f'Minors make up {round(stateResult, 2)}% of state: {self.get_geographies()}' + \
+            message = f'Minors make up {round(stateResult, 2)}% of {self.get_geographies()}' + \
                         f's population'
         if(self.__data_topic == "medianAges"):
             message = f'The state of: {self.get_geographies()}' + \
